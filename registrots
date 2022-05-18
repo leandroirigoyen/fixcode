@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { Storage } from '@capacitor/storage';
 import { RegistroUsuario } from '../Modelos/registrousuario.model';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -13,7 +14,6 @@ export class RegistroPage implements OnInit {
 
 	registrousuario: RegistroUsuario = new RegistroUsuario();
 
-  formularioRegistro: FormGroup;
   
   constructor(public alertController: AlertController,
 	public navCtrl: NavController,) {
@@ -96,10 +96,10 @@ async revisarconfirmarPassword(){
 	}
 	
 }
-  async guardar(){
-    var f = this.formularioRegistro.value;
+async guardar(formularioRegistro: NgForm){
 
-    if(this.formularioRegistro.invalid){
+
+    if(formularioRegistro.invalid){
       const alert = await this.alertController.create({
         header: 'Datos incompletos',
         message: 'Tienes que llenar todos los datos',
@@ -111,11 +111,11 @@ async revisarconfirmarPassword(){
     }
 
     var usuario = {
-      nombre: f.nombre,
-	  apellido: f.apellido,
-	  mail: f.mail,
-	  movil: f.movil,
-      password: f.password
+      nombre: formularioRegistro.value.nombre,
+	  apellido: formularioRegistro.value.apellido,
+	  mail: formularioRegistro.value.mail,
+	  movil: formularioRegistro.value.movil,
+      password: formularioRegistro.value.password
     }
 
 	const key = 'usuario';
