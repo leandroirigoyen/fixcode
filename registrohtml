@@ -11,34 +11,34 @@
 	<ion-card  style="margin-top: 50px">
 	
 	  <ion-card-content>
-		<form [formGroup]="formularioRegistro" (keyup.enter)="guardar()">
+		<form #formularioRegistro="ngForm" (ngSubmit)="guardar(externalBusinessForm)" (keyup.enter)="guardar(externalBusinessForm)">
 		  <ion-item lines="5">
 			<ion-label position="floating">Nombre</ion-label>
-			<ion-input formControlName="nombre" (blur)="revisarNombre()" [(ngModel)]="registrousuario.nombre"></ion-input>
+			<ion-input formControlName="nombre" (blur)="revisarNombre()" [(ngModel)]="registroUsuario.nombre" required></ion-input>
 		  </ion-item>
 		  <ion-item>
 			<ion-label position="floating">Apellido</ion-label>
-			<ion-input formControlName="apellido" (blur)="revisarApellido()" [(ngModel)]="registrousuario.apellido"></ion-input>
+			<ion-input formControlName="apellido" (blur)="revisarApellido()" [(ngModel)]="registroUsuario.apellido" required></ion-input>
 		  </ion-item>
 		  <ion-item>
 			<ion-label position="floating">Mail</ion-label>
-			<ion-input formControlName="mail" (blur)="revisarMail()" [(ngModel)]="registrousuario.mail"></ion-input>
+			<ion-input name="mail" (blur)="revisarMail()" [(ngModel)]="registroUsuario.mail" email required></ion-input>
 		  </ion-item>
 		  <ion-item>
 			<ion-label position="floating">Móvil</ion-label>
-			<ion-input formControlName="movil" (blur)="revisarMovil()" [(ngModel)]="registrousuario.movil"></ion-input>
+			<ion-input formControlName="movil" (blur)="revisarMovil()" [(ngModel)]="registroUsuario.movil" required></ion-input>
 		  </ion-item>
 		  <ion-item>
 			<ion-label position="floating">Contraseña</ion-label>
-			<ion-input formControlName="password" type="password" (blur)="revisarPassword()" [(ngModel)]="registrousuario.password" ></ion-input>
+			<ion-input formControlName="password" type="password" (blur)="revisarPassword()" [(ngModel)]="registroUsuario.password" required></ion-input>
 		  </ion-item>
 		  <ion-item>
 			<ion-label position="floating">Confirmar contraseña</ion-label>
-			<ion-input formControlName="confirmacionPassword" type="password" (blur)="revisarconfirmarPassword()" [(ngModel)]="registrousuario.confirmarpassword"></ion-input>
+			<ion-input formControlName="confirmacionPassword" type="password" (blur)="revisarconfirmarPassword()" [(ngModel)]="registroUsuario.confirmarpassword" required></ion-input>
 		  </ion-item>
 		  <br>
-		  <ion-button style="--background: #0E413C; text-transform: none;" expand="block" (click)="guardar()">Registrarse
-		  </ion-button>
+		  <ion-button type="submit" style="--background: #0E413C; text-transform: none;" expand="block">Registrarse
+		</ion-button>
 		</form>
 	  </ion-card-content>
 	</ion-card>
